@@ -1,0 +1,69 @@
+# Grade analyzer.py
+print("     Welcome to the Grade Analyzer!")
+print("*" * 50)
+
+# Student Scores
+scores = [88, 45, 92, 67, 73, 95, 81, 56, 78, 100, 62, 85, 90, 38, 71]
+# Grade counters
+grade_counts = {
+    'A': 0,
+    'B': 0,
+    'C': 0,
+    'D': 0,
+    'F': 0
+}   
+passing = 0
+failing = 0
+# for loop to analyze scores
+for score in scores:
+    if score >= 90:
+        grade_counts['A'] += 1
+        passing += 1
+    elif score >= 80:
+        grade_counts['B'] += 1
+        passing += 1
+    elif score >= 70:
+        grade_counts['C'] += 1
+        passing += 1
+    elif score >= 60:
+        grade_counts['D'] += 1
+        passing += 1
+    else:
+        grade_counts['F'] += 1
+        failing += 1    
+
+# Calculations
+average_score = sum(scores) / len(scores)
+total_scores = len(scores)
+highest_score = max(scores)
+lowest_score = min(scores)
+
+# Display results
+print("\nGrade Distribution:")
+for grade, count in grade_counts.items():
+    print(f"{grade}: {count}")
+
+print(f"\nAverage Score: {average_score:.2f}")
+print(f"Total Scores: {total_scores}")
+print(f"Highest Score: {highest_score}")
+print(f"Lowest Score: {lowest_score}")
+print(f"Passing Students: {passing}")
+print(f"Failing Students: {failing}")
+
+#while loop to allow user to analyze more scores
+while True:
+    new_scores_input = input("\nEnter new scores separated by commas (or type 'exit' to quit): ")
+    if new_scores_input.lower() == 'exit':
+        print("Exiting the Grade Analyzer. Goodbye!")
+        break
+    try:
+        new_scores = int(new_scores_input)
+        scores.append(new_scores)
+
+
+# recalculate grade distribution and statistics
+    except ValueError:
+        print("Invalid input. Please enter valid integers separated by commas or type 'exit' to quit.")
+    else:
+        new_average = sum(scores) / len(scores)
+        print(f"\nNew Average Score: {new_average:.2f}")
